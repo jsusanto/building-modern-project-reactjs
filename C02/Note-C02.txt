@@ -218,3 +218,22 @@ modules by path ./src/ 3.35 KiB
     ./src/App.css 2.24 KiB [built] [code generated]
     ./node_modules/css-loader/dist/cjs.js!./src/App.css 530 bytes [built] [code generated]
 webpack 5.73.0 compiled successfully in 1884 ms
+
+To run your React.js you need to use the following command:
+
+$npm run dev
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm run dev
+
+> React-Ecosystems@1.0.0 dev E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems
+> npx webpack-dev-server --mode development
+
+<w> [webpack-dev-server] "hot: true" automatically applies HMR plugin, you don't have to add it manually to your webpack configuration.
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:3000/
+<i> [webpack-dev-server] On Your Network (IPv4): http://192.168.1.106:3000/
+<i> [webpack-dev-server] On Your Network (IPv6): http://[fe80::78d1:9f82:1a6c:18a0]:3000/
+<i> [webpack-dev-server] Content not from webpack is served from 'E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems\public\' directory
+asset bundle.js 1.57 MiB [emitted] (name: main)
+runtime modules 26.9 KiB 16 modules
+modules by path ./node_modules/ 1.39 MiB 51 modules
