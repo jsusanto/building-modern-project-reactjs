@@ -1,0 +1,220 @@
+Chapter 2 - 30/06/22
+React Ecosystem
+1. React Redux
+   purpose: maintain state in our application using Flux architecture.
+
+2. React Thunk
+   Purpose: to separate the side effect of your application (example: network requests).
+
+3. Reselect
+   While Redux takes care in maintaining the state in your application.
+   The purpose of selectors is to abstract away the details.
+
+4. Styled Components
+   Gives us a nice way to style your component.
+   
+Building a React App from Scratch
+
+What do we need for React without using Create React:
+1. index.html
+2. Support for ES6 (using modern javascript syntax).
+3. Webpack - take care the building of the web and allows to use things like css modules.
+4. Root component - based on the component tree.
+5. react-hot-loader - see the changes immediately without refreshing the application.
+
+How to create React Ecosystem from scratch 
+==========================================
+Note: everything is created manually.
+
+Step 1. Create a folder - React-Ecosystems/
+
+Step 2. Initialise package.json by running >npm init -y
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm init -y
+Wrote to E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems\package.json:
+
+{
+  "name": "React-Ecosystems",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+Step 3. Create a folder called 'public', 
+        Create a folder called 'src', 
+        Create a file inside the public called index.html
+Step 4. Create a simple index.html content
+
+Step 5. Run the babel
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>
+npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/preset-react
+
+Explanation:
+- @babel/preset-env: it handles the transformation of ES6 into common JS
+- @babel/preset-react: how to deal with JSX properly.
+Babel are using the above libraries to transform something that a browser can run.
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.3.2 (node_modules\chokidar\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+
++ @babel/core@7.18.6
++ @babel/preset-react@7.18.6
++ @babel/preset-env@7.18.6
++ @babel/cli@7.18.6
+added 208 packages from 64 contributors and audited 209 packages in 27.204s
+
+17 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Step 6. 
+src/App.css, src/App.js, src/index.js 
+
+Step 7. Install react and react-dom
+>npm install react react-dom
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm install react react-dom
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ react@18.2.0
++ react-dom@18.2.0
+added 4 packages from 1 contributor and audited 213 packages in 5.327s
+
+17 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Step 8. Set up Web Pack - to build the app. 
+It will take the code from src and perform some operations like converting ES6 to common JS,
+then host public directory.
+
+Install all the webpack packages:
+npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>
+npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
+
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ style-loader@3.3.1
++ css-loader@6.7.1
++ webpack-cli@4.10.0
++ babel-loader@8.2.5
++ webpack-dev-server@4.9.3
++ webpack@5.73.0
+added 291 packages from 295 contributors and audited 504 packages in 55.029s
+
+48 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Step 9. Create a file to define what we want the web pack to do with our source code.
+create - webpack.config.js
+
+Write webpack configuration
+
+Step 10. Run the following command
+>npx webpack-dev-server --mode development
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npx webpack-dev-server --mode development
+<w> [webpack-dev-server] "hot: true" automatically applies HMR plugin, you don't have to add it manually to your webpack configuration.
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:3000/
+<i> [webpack-dev-server] On Your Network (IPv4): http://192.168.1.106:3000/
+<i> [webpack-dev-server] On Your Network (IPv6): http://[fe80::78d1:9f82:1a6c:18a0]:3000/
+<i> [webpack-dev-server] Content not from webpack is served from 'E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C
+
+Step 11. Open the browser http://localhost:3000/
+
+You'll see "Hello World!!"
+
+Step 12. Whenever we make a change in the code, the code is not reflected.
+We need to physically refresh the page.
+To automatically refresh this, you can install hot-loader.
+
+>npm install --save-dev react-hot-loader
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm install --save-dev react-hot-loader
+npm WARN react-hot-loader@4.13.0 requires a peer of react@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN react-hot-loader@4.13.0 requires a peer of react-dom@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ react-hot-loader@4.13.0
+added 16 packages from 51 contributors and audited 520 packages in 8.603s
+
+48 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Step 13. Update your package.json
+/*add this script so you don't have to type this one everytime we run npm*/
+
+"scripts": {
+    "dev": "npx webpack-dev-server --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+Step 14: Finally you only need to run -> npm run dev
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm run dev
+
+> React-Ecosystems@1.0.0 dev E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems
+> npx webpack-dev-server --mode development
+
+<w> [webpack-dev-server] "hot: true" automatically applies HMR plugin, you don't have to add it manually to your webpack configuration.
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:3000/
+<i> [webpack-dev-server] On Your Network (IPv4): http://192.168.1.106:3000/
+<i> [webpack-dev-server] On Your Network (IPv6): http://[fe80::78d1:9f82:1a6c:18a0]:3000/
+<i> [webpack-dev-server] Content not from webpack is served from 'E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems\public\' directory
+
+To test this -> you can change any value in your source code and it'll be built automatically.
+
+Step 15. at the moment we don't see any dist/ because everything is saved in memory.
+
+We need to add the following code in the package.json
+
+"scripts": {
+    "build": "npx webpack --mode development",
+    
+So it will save to dist/ when you run your node.
+
+running >npm run build
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems>npm run build
+
+> React-Ecosystems@1.0.0 build E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C02\React-Ecosystems
+> npx webpack --mode development
+
+asset bundle.js 1.34 MiB [emitted] (name: main)
+runtime modules 26.9 KiB 16 modules
+modules by path ./node_modules/ 1.24 MiB 29 modules
+modules by path ./src/ 3.35 KiB
+  modules by path ./src/*.js 611 bytes
+    ./src/index.js 184 bytes [built] [code generated]
+    ./src/App.js 427 bytes [built] [code generated]
+  modules by path ./src/*.css 2.76 KiB
+    ./src/App.css 2.24 KiB [built] [code generated]
+    ./node_modules/css-loader/dist/cjs.js!./src/App.css 530 bytes [built] [code generated]
+webpack 5.73.0 compiled successfully in 1884 ms
