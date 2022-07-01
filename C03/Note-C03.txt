@@ -1,0 +1,92 @@
+Chapter 3 - Adding Redux
+========================
+What is the best way to manage state in React.js?
+It would be better to use Redux because it provides a centralised state by having restrictions to 
+avoid state drilling problem and global state chaos.
+
+The Redux Store
+===============
+It's using JSON format for example, user data:
+{
+    user: {
+        isLoggedIn,
+        name,
+        age,
+        bio
+    }
+}
+
+Redux Actions
+=============
+It's JSON data that contains 2 things { type, payload }
+Type is basically just a string naming the action.
+Payload is additional data.
+The purpose of redux action is to define the different events that can occur in our application.
+For example:
+USER_DATA_LOADED  that contains payload of UserID
+ITEM_ADDED_TO_CART that contains payload of ItemID
+
+Reducers
+========
+Reducers on the other hand are Redux's way of specifying what should happen in the redux store (Central State)
+when a given action occurs.
+
+Example:
+When the USER_DATA_LOADED action occurs, we set the user property in the Redux store to the user data 
+that's in the action payload.
+
+When ITEM_ADDED_TO_CART occurs, we add whatever item is in the payload to the array of the array item in 
+the redux store.
+
+Overall Workflow
+================
+UI Triggers Action, then action is reduced to get the new updated state, 
+components see READ-ONLY access to updated state.
+
+How to install redux in your project?
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C03\React-Ecosystems>npm install redux react-redux
+npm WARN react-hot-loader@4.13.0 requires a peer of react@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN react-hot-loader@4.13.0 requires a peer of react-dom@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ redux@4.2.0
++ react-redux@8.0.2
+added 10 packages from 34 contributors and audited 530 packages in 5.582s
+
+48 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+$npm install redux react-redux
+
+How to?
+Step 1. Install Redux
+$npm install redux react-redux
+
+Step 2. Add store.js file and set up a basic code
+==============================
+
+import { createStore, combineReducers } from 'redux';
+
+const reducers = {};
+
+// create root reducer
+const rootReducer = combineReducers (reducers);
+
+// return createStore
+export const configureStore = () => createStore(rootReducer);
+
+===============================
+
+Step 3. Go to index.js and update the code by wrapping using the <Provider>
+
+and import the following files.
+
+import { Provider } from 'react-redux';
+import { configureStore  } from './store.js';
+
+Step 4. Create redux action
