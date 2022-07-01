@@ -15,16 +15,21 @@ export const todos = (state = [], action) => {
 
     switch (type) {
         case CREATE_TODO: {
+            // Get text property from payload
             const { text } = payload;
+            // Create a newTodo item
             const newTodo = {
                 text,
                 isCompleted: false,
             };
+            // Return the state with the new state
             return state.concat(newTodo);
         }
 
         case REMOVE_TODO:{
+            // Get text property from payload
             const { text } = payload;
+            // return state with the todo to remove the filter out
             return state.filter(todo => todo.text !== text);
         }
         default: 
