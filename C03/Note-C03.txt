@@ -195,3 +195,24 @@ root.render(
 );
 
 --------------------------------------------------------
+
+Redux DevTools
+===========
+Install Redux DevTools in your Chrome and update in your store.js to below code to 
+connect Redux extension to our application.
+
+export const configureStore = () =>
+    createStore(
+        persistedReducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__(),
+    );
+
+instead of 
+
+export const configureStore = () =>
+    createStore(
+        persistedReducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__(),
+    );
