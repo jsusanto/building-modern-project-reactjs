@@ -90,3 +90,108 @@ import { Provider } from 'react-redux';
 import { configureStore  } from './store.js';
 
 Step 4. Create redux action
+
+Lastly, to run this application:
+
+>npm run dev
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C03\React-Ecosystems>npm run dev
+
+> React-Ecosystems@1.0.0 dev E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C03\React-Ecosystems
+> npx webpack-dev-server --mode development
+
+<w> [webpack-dev-server] "hot: true" automatically applies HMR plugin, you don't have to add it manually to your webpack configuration.
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:3000/
+<i> [webpack-dev-server] On Your Network (IPv4): http://192.168.1.106:3000/
+<i> [webpack-dev-server] On Your Network (IPv6): http://[fe80::78d1:9f82:1a6c:18a0]:3000/
+<i> [webpack-dev-server] Content not from webpack is served from 'E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C03\React-Ecosystems\public\' directory
+
+Redux Persist
+=============
+This is to retain state in the browser when the user refreshes the page.
+
+To install: npm install redux-persist
+
+E:\RMIT\Linkedin-Learning\building-modern-project-reactjs\C03\React-Ecosystems>npm install redux-persist
+npm WARN react-hot-loader@4.13.0 requires a peer of react@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN react-hot-loader@4.13.0 requires a peer of react-dom@^15.0.0 || ^16.0.0 || ^17.0.0  but none is installed. You must install peer dependencies yourself.
+npm WARN React-Ecosystems@1.0.0 No description
+npm WARN React-Ecosystems@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ redux-persist@6.0.0
+added 1 package and audited 531 packages in 4.419s
+
+48 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+How to implement?
+Step 1. go to store.js and update using the code below:
+
+import the libraries, define persistConfig to tell where to save the state,
+wrap root reducer with persistReducer function, and createStore using the persistedReducer.
+
+--------------------------------------------------------
+
+import { createStore, combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
+import { todos  } from './todos/reducers';
+
+// Hook up todos with reducers
+const reducers = {
+    todos
+};
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    stateReconciler: autoMergeLevel2 // this is to tell Redux how to reconcile the initial and stored states of the application
+};
+
+// create root reducer
+const rootReducer = combineReducers (reducers);
+
+// persistConfig used to tell where to save the state
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// return createStore
+export const configureStore = () => createStore(rootRedupersistedReducercer);
+
+--------------------------------------------------------
+
+Step 2. Update your index.js using below code:
+
+Import persist libraries, define persistor variable and wrap <App /> using <PersistGate> tag
+
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { configureStore  } from './store.js';
+import App from './App.js';
+
+const store = configureStore();
+const persistor = persistStore(store);
+
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
+root.render(
+    <Provider store={store}>
+        <PersistGate 
+            loading={<div>Loading...</div>}
+            persistor={persistor}>
+            <App />
+        </PersistGate>
+    </Provider>,
+    document.getElementById('root')
+);
+
+--------------------------------------------------------
