@@ -1,4 +1,4 @@
-import { CREATE_TODO, REMOVE_TODO } from "./actions";
+import { CREATE_TODO, REMOVE_TODO, MARK_TODO_AS_COMPLETED } from "./actions";
 
 // Add all reducers code
 /*
@@ -32,6 +32,20 @@ export const todos = (state = [], action) => {
             // return state with the todo to remove the filter out
             return state.filter(todo => todo.text !== text);
         }
+
+        case MARK_TODO_AS_COMPLETED:{
+            // Get text property from payload
+            const { text } = payload;
+
+            return state.map(todo => {
+                if(todo.text === text){
+                    return { ...todo, isCompleted: true }
+                }
+            })
+
+            return todo;
+        }
+
         default: 
             return state;
     }
